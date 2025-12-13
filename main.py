@@ -22,12 +22,16 @@ from openai import OpenAI
 # ─────────────────────────────────────────────────────────────
 load_dotenv()
 
-DATA_DIR = os.getenv("DATA_DIR", "/data")
+# Render-safe writable storage:
+# - Render allows /tmp (ephemeral). If you later add a Render Disk, you can point DATA_DIR to that mount path.
+DATA_DIR = os.getenv("DATA_DIR", "/tmp")
+
 STORYBOARD_DIR = os.path.join(DATA_DIR, "storyboards")
 KNOWLEDGE_DIR = os.path.join(DATA_DIR, "knowledge")
 
 os.makedirs(STORYBOARD_DIR, exist_ok=True)
 os.makedirs(KNOWLEDGE_DIR, exist_ok=True)
+
 
 # Optional sidecar URLs (only used if you run them)
 STT_URL = os.getenv("STT_URL", "").strip()  # e.g. https://your-stt.onrender.com

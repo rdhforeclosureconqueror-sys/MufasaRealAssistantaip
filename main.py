@@ -10,6 +10,9 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from pathlib import Path
+
+MAAT_PACK = Path("prompts/maat_pack_v1.txt").read_text(encoding="utf-8")
 
 # OpenAI (new SDK)
 from openai import OpenAI
